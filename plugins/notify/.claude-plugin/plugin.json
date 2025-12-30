@@ -1,0 +1,5 @@
+{
+  "name": "notify",
+  "version": "1.0.0",
+  "description": "macOS notifications on task completion and input requests"
+}

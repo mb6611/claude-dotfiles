@@ -1,0 +1,35 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-dotfiles",
+  "version": "1.0.0",
+  "owner": {
+    "name": "1unoe"
+  },
+  "description": "Personal Claude Code plugins",
+  "plugins": [
+    {
+      "name": "git",
+      "source": "./plugins/git",
+      "description": "Smart commits with conventional format and logical grouping",
+      "version": "1.0.0"
+    },
+    {
+      "name": "learn",
+      "source": "./plugins/learn",
+      "description": "Understand codebases through exploration and analysis",
+      "version": "1.0.0"
+    },
+    {
+      "name": "notify",
+      "source": "./plugins/notify",
+      "description": "macOS notifications on task completion and input requests",
+      "version": "1.0.0"
+    },
+    {
+      "name": "plugin-dev",
+      "source": "./plugins/plugin-dev",
+      "description": "Create and modify plugins in this marketplace",
+      "version": "1.0.0"
+    }
+  ]
+}
