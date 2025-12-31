@@ -3,7 +3,7 @@ description: Create logical git commits and push changes to remote
 argument-hint: [optional: commit scope]
 ---
 
-I have just finished one or more changes. It's time to commit and push.
+I have just finished one or more changes. It's time to commit.
 
 ## Phase 1: Analysis
 
@@ -26,7 +26,6 @@ Analyze git diffs, running any additional `git` commands necessary to understand
 ### Small Changes
 1. Stage all relevant files
 2. Create single commit with conventional commit message
-3. Push to remote
 
 ### Large Changes
 1. **Group related changes logically:**
@@ -50,8 +49,6 @@ git add src/refactored-module.js
 git commit -m "refactor(module): improve structure"
 ```
 
-3. Push all commits: `git push origin [branch]`
-
 ## Commit Message Format
 
 Follow Conventional Commits: `type(scope): subject`
@@ -70,8 +67,8 @@ DO NOT say the commit was co-authored by claude at the end.
 ## Final Steps
 
 1. Create commits in logical batches
-2. Push to remote: `git push origin [branch]`
-3. List commits created
+2. List commits created
+3. **Ask the user** if they want to push to remote (use `git:push` or manual push)
 
 ## Key Reminders
 
@@ -79,3 +76,4 @@ DO NOT say the commit was co-authored by claude at the end.
 - **Large changes:** Multiple logical commits grouping related work
 - **Commit messages:** Follow conventional commits format
 - **Clean separation:** Group changes by feature/purpose
+- **Never auto-push:** Always ask the user before pushing
