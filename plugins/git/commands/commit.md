@@ -1,6 +1,6 @@
 ---
 description: Create logical git commits and push changes to remote
-argument-hint: [optional: commit scope]
+argument-hint: "[optional: commit scope]"
 ---
 
 I have just finished one or more changes. It's time to commit.

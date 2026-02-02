@@ -1,6 +1,6 @@
 ---
 description: Create a pull request for the current branch
-argument-hint: [target branch, e.g., main]
+argument-hint: "[target branch, e.g., main]"
 ---
 
 Create a pull request for the current branch.

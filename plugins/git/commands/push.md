@@ -1,6 +1,6 @@
 ---
 description: Push commits to remote repository
-argument-hint: [optional: remote branch]
+argument-hint: "[optional: remote branch]"
 ---
 
 Push local commits to the remote repository.
