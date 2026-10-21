@@ -19,7 +19,7 @@ User input: $ARGUMENTS
 Every line must carry fundamental meaning. Work from first principles: what must be true for this feature to be correct? Write that, and nothing else.
 
 - **No noise.** Cut filler, restatements, hedges, generic best practices ("should be performant", "handle errors gracefully"), and anything that would hold for any feature. If deleting a bullet loses nothing, delete it.
-- **Say each thing once.** A fact lives in one item, and other places cite its § number. Don't echo requirements in goals, stories, or success criteria.
+- **Say each thing once.** A fact lives in one item, and other places cite its ID. Don't echo requirements in goals, stories, or success criteria.
 - **Requirements are baseline properties.** Each one states an invariant or observable behavior of the system: something that is always true, or always happens under a stated condition. Together they should be self-consistent, with no two items able to conflict. Anything else should follow from them.
 - **Right granularity.** One item per independent property. Don't bundle unrelated behaviors into one item. Don't shatter one property into trivial sub-bullets either. If two items can't be true or false independently, they're one item.
 - **Precise over complete.** A few exact properties beat many vague ones. Name the concrete condition and the concrete outcome.
@@ -37,43 +37,42 @@ Write `.claude/specs/<slug>.spec.md` right away. Use what you know, and fill the
 ```markdown
 # <Feature title>
 
-## §1 Problem
-§1.1 <Who has what problem, and why it matters now.>
+## Problem
+<Who has what problem, and why it matters now. Plain prose, no IDs.>
 
-## §2 Goals
-- §2.1 <Outcome, phrased from the user's point of view>
+## Goals
+- **G1** <Outcome, phrased from the user's point of view>
 
-## §3 Non-goals
-- §3.1 <Explicitly out of scope — what we are NOT doing>
+## Non-goals
+- **NG1** <Explicitly out of scope — what we are NOT doing>
 
-## §4 User stories
-### §4.1 (P1) <title>
+## User stories
+### US1 (P1) <title>
 <As a … I want … so that …>. Why P1: <reason>.
-- §4.1.1 Given … When … Then …
+- **US1.1** Given … When … Then …
 
-## §5 Requirements
-- §5.1 WHEN <trigger> THE SYSTEM SHALL <observable behavior>.
-- §5.2 IF <unwanted condition> THEN THE SYSTEM SHALL <response>.
+## Requirements
+- **R1** WHEN <trigger> THE SYSTEM SHALL <observable behavior>.
+- **R2** IF <unwanted condition> THEN THE SYSTEM SHALL <response>.
 
-## §6 Constraints & assumptions
-- §6.1 <Hard constraint from the user, or an assumption we're making>
+## Constraints & assumptions
+- **C1** <Hard constraint from the user, or an assumption we're making>
 
-## §7 Key decisions
-- §7.1 <Decision> — because <why>. Rejected: <alternative> (<why not>).
+## Key decisions
+- **D1** <Decision> — because <why>. Rejected: <alternative> (<why not>).
 
-## §8 Edge cases
-- §8.1 <What happens when …>
+## Edge cases
+- **E1** <What happens when …>
 
-## §9 Success criteria
-- §9.1 <Measurable, technology-agnostic outcome>
+## Success criteria
+- **SC1** <Measurable, technology-agnostic outcome>
 ```
 
-### Numbering
+### IDs
 
-Every section is `§N` and every item in it is `§N.M` (nested items `§N.M.K`), so the plan and reviews can cite exact parts. Each numbered item must make sense on its own when cited.
-- Keep the section numbers above even if a section is dropped. Don't shift later sections up.
-- Add new items at the end of their section with the next free number.
-- Before a plan exists, you may renumber freely to keep things tidy. Once `.claude/plans/<slug>.plan.md` exists, **never renumber**. Delete an item by replacing its text with `*(removed)*`, and tell the user which plan references now need updating.
+Every item outside Problem starts with a bold ID whose prefix names its type: `G` goal, `NG` non-goal, `US` user story (its acceptance criteria are `US1.1`, `US1.2`, …), `R` requirement, `C` constraint, `D` decision, `E` edge case, `SC` success criterion. The plan and reviews cite these IDs, so each item must make sense on its own when cited. Cite with the bare ID (`R4`, `R4–R7`, `US3`), never a section number.
+- Add new items with the next free number for their prefix.
+- Before a plan exists, you may renumber freely to keep things tidy. Once `.claude/plans/<slug>.plan.md` exists, **never renumber**. Delete an item by replacing its text with `*(removed)*` (keep the ID), and tell the user which plan references now need updating.
 
 ## Step 3: Interview loop (the main event)
 

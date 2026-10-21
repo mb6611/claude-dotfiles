@@ -33,10 +33,10 @@ Show the user the schedule in a compact table (wave → agents → units → fil
 Spawn every agent in a wave **in a single message** so they run concurrently. Each agent gets a self-contained prompt; it does not see this conversation:
 
 ```
-You are implementing unit <§5.N name> of an approved plan.
+You are implementing unit <UN name> of an approved plan.
 
-Plan: <path to subplan, or master plan + "§5.N">. Read it first.
-Spec: <spec path>. Read only the items your tasks cite (<spec §5.1, §8.2, …>).
+Plan: <path to subplan, or master plan + "UN">. Read it first.
+Spec: <spec path>. Read only the items your tasks cite (<R1, E2, …>).
 
 You own these files, and only these: <list/globs>.
 If you need to change anything outside them, STOP and report what and why. Do not work around it.
@@ -48,7 +48,7 @@ Do:
 - If the code doesn't match what the plan assumes, stop and report: expected / found / why it matters.
 
 Reply in ≤150 words:
-- DONE: task numbers completed (§5.N.x)
+- DONE: task IDs completed (UN.x)
 - FILES: files changed
 - VERIFY: commands run + pass/fail
 - ISSUES: deviations, blockers, or follow-ups (or "none")
@@ -62,7 +62,7 @@ After each wave:
 
 ## Step 4: Verify against the spec
 
-When all waves are done, spawn **one** fresh read-only verifier subagent (`subagent_type: "Plan"` or `general-purpose`) with the spec path, the plan path, and `git diff` scope. Ask it to check each spec requirement (spec §5), edge case (spec §8) and success criterion (spec §9) against the implementation, and to report only gaps or regressions, citing spec § numbers and file:line references, in ≤300 words. Fix real gaps, or raise them to the user if they need a decision.
+When all waves are done, spawn **one** fresh read-only verifier subagent (`subagent_type: "Plan"` or `general-purpose`) with the spec path, the plan path, and `git diff` scope. Ask it to check each spec requirement (R), edge case (E) and success criterion (SC) against the implementation, and to report only gaps or regressions, citing spec IDs and file:line references, in ≤300 words. Fix real gaps, or raise them to the user if they need a decision.
 
 ## Step 5: Wrap up
 

@@ -11,8 +11,8 @@ User input: $ARGUMENTS
 
 - Only create or edit files in `.claude/plans/` (and the spec, if the user agrees it needs changes). Do **not** write or modify source code.
 - The final plan has **no open questions**. Resolve them with the user or by reading code.
-- No noise. Every task is a concrete change that someone must make, with no restated context, generic advice, or tasks that exist only to look thorough. Size tasks so each is one meaningful change: don't bundle unrelated edits, and don't split one edit into trivial steps. Say each thing once and cite it by §.
-- Every task cites the spec items it serves (`spec §5.2`), or is explicitly justified. Nothing the spec lists as a non-goal gets planned.
+- No noise. Every task is a concrete change that someone must make, with no restated context, generic advice, or tasks that exist only to look thorough. Size tasks so each is one meaningful change: don't bundle unrelated edits, and don't split one edit into trivial steps. Say each thing once and cite it by ID.
+- Every task cites the spec items it serves (`R2`), or is explicitly justified. Nothing the spec lists as a non-goal gets planned.
 
 ## Step 1: Load the spec
 
@@ -23,7 +23,7 @@ User input: $ARGUMENTS
 ## Step 2: Research (parallel, read-only)
 
 Spawn 2–4 `Explore` subagents **in one message**, sized to the spec (1 for a tiny feature). Give each a distinct focus, for example:
-- Where the code touched by the spec's requirements (spec §5) lives today, and how it flows
+- Where the code touched by the spec's requirements lives today, and how it flows
 - Existing patterns/conventions to mirror (similar features, error handling, tests)
 - Build, test, lint, typecheck, and migration commands; CI config
 - Integration points and anything risky (shared state, public APIs, data migrations)
@@ -57,67 +57,67 @@ Draw unit boundaries along **file ownership**: two units that can run in paralle
 
 **Spec:** [`.claude/specs/<slug>.spec.md`](../specs/<slug>.spec.md)
 
-## §1 Overview
-§1.1 <What we're building and the approach, 3–6 sentences.>
+## Overview
+<What we're building and the approach, 3–6 sentences.>
 
-## §2 Current state
-- §2.1 <What exists today, with file:line references>
+## Current state
+- <What exists today, with file:line references>
 
-## §3 Key decisions
-- §3.1 <Decision> — <why>. Rejected: <alternative>. (spec §7.2)
+## Key decisions
+- <Decision> — <why>. Rejected: <alternative>. (D2)
 
-## §4 What we're NOT doing
-- §4.1 <Implementation-level exclusion> (spec §3.1)
+## What we're NOT doing
+- <Implementation-level exclusion> (NG1)
 
-## §5 Units
-### §5.1 <unit name>
+## Units
+### U1 <unit name>
 - **Depends on**: —
 - **Owns**: `src/foo/*.ts`, `src/foo.test.ts`
-- [ ] §5.1.1 Add `parseThing(input: Raw): Thing` in `src/foo/bar.ts`. Validate X, return Y on failure. (spec §5.1, §8.2)
-- [ ] §5.1.2 Tests for `parseThing` happy path and §8.2 edge case in `src/foo.test.ts`. (spec §5.1)
-- [ ] §5.1.3 verify: `npm test -- foo` passes
-- [ ] §5.1.4 verify: `npm run typecheck` passes
-- [ ] §5.1.5 manual: <what a human should check> (spec §9.1)
+- [ ] **U1.1** Add `parseThing(input: Raw): Thing` in `src/foo/bar.ts`. Validate X, return Y on failure. (R1, E2)
+- [ ] **U1.2** Tests for `parseThing` happy path and the E2 case in `src/foo.test.ts`. (R1)
+- [ ] **U1.3** verify: `npm test -- foo` passes
+- [ ] **U1.4** verify: `npm run typecheck` passes
+- [ ] **U1.5** manual: <what a human should check> (SC1)
 
-## §6 Execution waves
+## Execution waves
 | Wave | Units | Notes |
 |------|-------|-------|
-| 1 | §5.1 | foundation |
-| 2 | §5.2, §5.3 | parallel, disjoint files |
+| 1 | U1 | foundation |
+| 2 | U2, U3 | parallel, disjoint files |
 
-## §7 Testing strategy
-- §7.1 <How the spec's success criteria (spec §9) are verified end to end>
+## Testing strategy
+- <How the spec's success criteria are verified end to end>
 
-## §8 Risks & rollback
-- §8.1 <Risk> — <mitigation>
+## Risks & rollback
+- <Risk> — <mitigation>
 
-## §9 Coverage
+## Coverage
 | Spec | Plan |
 |------|------|
-| §5.1 | §5.1.1, §5.1.2 |
-| §9.1 | §5.1.5 |
+| R1 | U1.1, U1.2 |
+| SC1 | U1.5 |
 ```
 
-### Numbering and references
+### IDs and references
 
-- Same rules as the spec. Every section is `§N`, every item `§N.M`, and tasks are `§5.U.T`. Once implementation starts, never renumber; mark dropped items `*(removed)*`.
-- A bare `§` points inside the plan. Spec references are always written `spec §N.M`. Every task cites the spec items it serves. Every spec item in §2, §4, §5, §8 and §9 appears in the coverage table, or the plan explains why it's not covered.
+- Units are `U1`, `U2`, … and their tasks `U1.1`, `U1.2`, …. Other plan sections are plain bullets with no IDs. Once implementation starts, never renumber; mark dropped tasks `*(removed)*` and keep the ID.
+- Cite spec items by their bare IDs (`R5`, `E2`, `SC1`); the prefixes never collide with plan IDs. Every task cites the spec items it serves. Every spec goal, user-story acceptance criterion, requirement, edge case and success criterion appears in the coverage table, or the plan explains why it's not covered.
 - Each task ends in a checkbox and is phrased so an agent with no context can do it.
 
 ### Subplans
 
-A subplan `.claude/plans/<slug>/NN-<unit>.plan.md` holds the full content of master unit `§5.N` (`NN` is `N` zero-padded, so `§5.2` lives in `02-<unit>.plan.md`) and keeps that numbering (its tasks are `§5.N.1`, `§5.N.2`, …). It starts with:
+A subplan `.claude/plans/<slug>/NN-<unit>.plan.md` holds the full content of master unit `UN` (`NN` is `N` zero-padded, so `U2` lives in `02-<unit>.plan.md`) and keeps that numbering (its tasks are `UN.1`, `UN.2`, …). It starts with:
 
 ```markdown
-# §5.N <unit name>
+# UN <unit name>
 
 **Spec:** [`.claude/specs/<slug>.spec.md`](../../specs/<slug>.spec.md) · **Master plan:** [`<slug>.plan.md`](../<slug>.plan.md)
 
-- **Depends on**: §5.1
+- **Depends on**: U1
 - **Owns**: `src/api/**`
 ```
 
-In the master, that unit is one line: `### §5.N <name> → [subplan](<slug>/NN-<unit>.plan.md)` with its Depends on / Owns.
+In the master, that unit is one line: `### UN <name> → [subplan](<slug>/NN-<unit>.plan.md)` with its Depends on / Owns.
 
 ### Level of detail
 

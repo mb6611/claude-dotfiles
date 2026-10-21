@@ -29,8 +29,8 @@ Common to both:
 - Noise: bullets that are filler, generic, restated elsewhere, or would hold for any feature.
   Items bundled together that should be separate, or split up when they're really one thing.
   Fix by deleting or merging.
-- Numbering: unnumbered items, duplicate or skipped § numbers, items that don't make sense when
-  cited alone.
+- IDs: items missing an ID, duplicate or wrong-prefix IDs, items that don't make sense when cited
+  alone.
 - TODOs, placeholders, or open questions written into the file. It should read as a settled
   proposal, and questions belong in chat. Raise the underlying question as an ASK and remove it.
 - <If the user dismissed findings earlier in this conversation: "Already dismissed, do not re-raise: …">
@@ -47,8 +47,8 @@ Severity is the consequence if the issue is left in:
 - HIGH: likely rework or a stalled stage. Ambiguity an implementer would have to guess at, an
   untestable requirement, a coverage gap, a wrong assumption about the code.
 - MEDIUM: a real but contained problem. A missing edge case with an obvious answer, an inconsistency
-  between items, a broken § reference, an unrunnable verify step.
-- LOW: costs clarity, not correctness. Noise, duplication, numbering slips, misplaced detail.
+  between items, a broken ID reference, an unrunnable verify step.
+- LOW: costs clarity, not correctness. Noise, duplication, ID slips, misplaced detail.
 
 Disposition is whether a human is needed, independent of severity:
 - ASK: genuinely ambiguous. Reasonable people could choose differently and the files and code don't
@@ -56,7 +56,7 @@ Disposition is whether a human is needed, independent of severity:
   recommendation. LOW findings are never ASK.
 - FIX: one answer is clearly right from the files and code. Give the exact replacement text.
 
-Reply as a list sorted by severity: [CRITICAL|HIGH|MEDIUM|LOW] [ASK|FIX] <file> <§ number> — <issue>
+Reply as a list sorted by severity: [CRITICAL|HIGH|MEDIUM|LOW] [ASK|FIX] <file> <ID or section> — <issue>
 — <consequence if left> — <fix or options>. ≤500 words.
 ```
 
@@ -80,9 +80,9 @@ The spec describes WHAT and WHY, not HOW. Only glance at the codebase to check a
 ```
 Spot-check the codebase. Verify that the files, functions, and commands the plan relies on exist and
 behave as assumed (grep/read, don't read everything).
-- Coverage: spec items (spec §2, §4, §5, §8, §9) with no task; tasks that cite nothing; a coverage
+- Coverage: spec items (G, US acceptance criteria, R, E, SC) with no task; tasks that cite nothing; a coverage
   table that doesn't match the tasks
-- References: missing **Spec:** link; `spec §` citations that don't exist or are `*(removed)*`
+- References: missing **Spec:** link; spec ID citations that don't exist or are `*(removed)*`
 - Spec drift: the plan contradicts the spec, or plans something the spec lists as a non-goal
 - Wrong assumptions about the code: missing files/APIs, wrong paths, conventions ignored
 - Parallel safety: units in the same wave owning the same files; missing or circular Depends on;
@@ -97,7 +97,7 @@ behave as assumed (grep/read, don't read everything).
 Sanity-check the findings yourself first. Drop anything that's really a nitpick, or whose stated consequence doesn't hold up. If a finding marked FIX is actually ambiguous, move it to ASK. If one marked ASK has an obvious answer, move it to FIX.
 
 1. Apply every **FIX** directly. Don't run a second review of your own fixes.
-2. Report what was auto-fixed, grouped by severity, one line each: `HIGH §5.3 — <what was wrong> → <what changed>`. If nothing was found, say so in one line.
+2. Report what was auto-fixed, grouped by severity, one line each: `HIGH R3 — <what was wrong> → <what changed>`. If nothing was found, say so in one line.
 3. Raise every **ASK** via `AskUserQuestion` (up to 4 per call, most severe first). Put the severity in the question, the recommended option first, and an "Ignore — leave as is" option. Skip this step if there are none. If a plan finding means the spec itself is wrong, say so and offer to fix the spec first.
 4. For each answer, update the file to reflect the decision, recording notable ones under Key decisions. If the user ignores a finding, leave the file as is and remember it for later reviews in this conversation.
 
