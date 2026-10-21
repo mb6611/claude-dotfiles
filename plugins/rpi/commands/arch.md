@@ -42,36 +42,36 @@ Write `.claude/specs/<slug>.spec.md` right away. Use what you know, and fill the
 <Who has what problem, and why it matters now. Plain prose, no IDs.>
 
 ## Goals
-- **G1** <Outcome, phrased from the user's point of view>
+- `G1` <Outcome, phrased from the user's point of view>
 
 ## Non-goals
-- **NG1** <Explicitly out of scope — what we are NOT doing>
+- `NG1` <Explicitly out of scope — what we are NOT doing>
 
 ## User stories
 ### US1 (P1) <title>
 <As a … I want … so that …>. Why P1: <reason>.
-- **US1.1** GIVEN … WHEN … THEN …
+- `US1.1` GIVEN … WHEN … THEN …
 
 ## Requirements
-- **R1** WHEN <trigger> THE SYSTEM SHALL <observable behavior, **key phrase bold**>.
-- **R2** IF <unwanted condition> THEN THE SYSTEM SHALL <response>.
+- `R1` WHEN <trigger> THE SYSTEM SHALL <observable behavior, **key phrase bold**>.
+- `R2` IF <unwanted condition> THEN THE SYSTEM SHALL <response>.
 
 ## Constraints & assumptions
-- **C1** <Hard constraint from the user, or an assumption we're making>
+- `C1` <Hard constraint from the user, or an assumption we're making>
 
 ## Key decisions
-- **D1** <Decision> — because <why>. Rejected: <alternative> (<why not>).
+- `D1` <Decision> — because <why>. Rejected: <alternative> (<why not>).
 
 ## Edge cases
-- **E1** <What happens when …>
+- `E1` <What happens when …>
 
 ## Success criteria
-- **SC1** <Measurable, technology-agnostic outcome>
+- `SC1` <Measurable, technology-agnostic outcome>
 ```
 
 ### IDs
 
-Every item outside Problem starts with a bold ID whose prefix names its type: `G` goal, `NG` non-goal, `US` user story (its acceptance criteria are `US1.1`, `US1.2`, …), `R` requirement, `C` constraint, `D` decision, `E` edge case, `SC` success criterion. The plan and reviews cite these IDs, so each item must make sense on its own when cited. Cite with the bare ID (`R4`, `R4–R7`, `US3`), never a section number.
+Every item outside Problem starts with its ID in a code span (`` `R1` ``, never bold, so it stays a separate label from any bold phrase after it). The prefix names the type: `G` goal, `NG` non-goal, `US` user story (its acceptance criteria are `US1.1`, `US1.2`, …), `R` requirement, `C` constraint, `D` decision, `E` edge case, `SC` success criterion. The plan and reviews cite these IDs, so each item must make sense on its own when cited. Cite with the bare ID (`R4`, `R4–R7`, `US3`), never a section number.
 - Add new items with the next free number for their prefix.
 - Before a plan exists, you may renumber freely to keep things tidy. Once `.claude/plans/<slug>.plan.md` exists, **never renumber**. Delete an item by replacing its text with `*(removed)*` (keep the ID), and tell the user which plan references now need updating.
 

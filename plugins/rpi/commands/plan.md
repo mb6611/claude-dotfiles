@@ -73,11 +73,11 @@ Draw unit boundaries along **file ownership**: two units that can run in paralle
 ### U1 <unit name>
 - **Depends on**: —
 - **Owns**: `src/foo/*.ts`, `src/foo.test.ts`
-- [ ] **U1.1** Add `parseThing(input: Raw): Thing` in `src/foo/bar.ts`. Validate X, return Y on failure. (R1, E2)
-- [ ] **U1.2** Tests for `parseThing` happy path and the E2 case in `src/foo.test.ts`. (R1)
-- [ ] **U1.3** verify: `npm test -- foo` passes
-- [ ] **U1.4** verify: `npm run typecheck` passes
-- [ ] **U1.5** manual: <what a human should check> (SC1)
+- [ ] `U1.1` Add `parseThing(input: Raw): Thing` in `src/foo/bar.ts`. Validate X, return Y on failure. (R1, E2)
+- [ ] `U1.2` Tests for `parseThing` happy path and the E2 case in `src/foo.test.ts`. (R1)
+- [ ] `U1.3` verify: `npm test -- foo` passes
+- [ ] `U1.4` verify: `npm run typecheck` passes
+- [ ] `U1.5` manual: <what a human should check> (SC1)
 
 ## Execution waves
 | Wave | Units | Notes |
@@ -100,7 +100,7 @@ Draw unit boundaries along **file ownership**: two units that can run in paralle
 
 ### IDs and references
 
-- Units are `U1`, `U2`, … and their tasks `U1.1`, `U1.2`, …. Other plan sections are plain bullets with no IDs. Once implementation starts, never renumber; mark dropped tasks `*(removed)*` and keep the ID.
+- Units are `U1`, `U2`, … and their tasks `U1.1`, `U1.2`, …, written as code spans at the start of the task, like the spec's IDs. Other plan sections are plain bullets with no IDs. Once implementation starts, never renumber; mark dropped tasks `*(removed)*` and keep the ID.
 - Cite spec items by their bare IDs (`R5`, `E2`, `SC1`); the prefixes never collide with plan IDs. Every task cites the spec items it serves. Every spec goal, user-story acceptance criterion, requirement, edge case and success criterion appears in the coverage table, or the plan explains why it's not covered.
 - Each task ends in a checkbox and is phrased so an agent with no context can do it.
 
