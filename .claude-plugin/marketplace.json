@@ -36,6 +36,12 @@
       "source": "./plugins/rpi",
       "description": "Spec → plan → implement workflow with self-review and parallel implementation",
       "version": "1.0.0"
+    },
+    {
+      "name": "prompting",
+      "source": "./plugins/prompting",
+      "description": "First-principles prompting and context engineering practices, kept as a living reference",
+      "version": "1.0.0"
     }
   ]
 }
