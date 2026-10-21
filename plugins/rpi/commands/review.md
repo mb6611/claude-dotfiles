@@ -73,6 +73,8 @@ The spec describes WHAT and WHY, not HOW. Only glance at the codebase to check a
 - Scope: goals with no requirements; requirements that serve no goal; scope creep beyond the problem
 - Implementation detail that doesn't belong (file paths, function names, schemas, library choices
   the user didn't require)
+- Diagrams that contradict the items or state a rule no item states; a flow, cycle, or lifecycle
+  described only in prose that the next stage would likely misread without one
 ```
 
 ### Plan checklist

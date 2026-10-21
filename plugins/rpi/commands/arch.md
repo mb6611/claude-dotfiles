@@ -25,6 +25,24 @@ Every line must carry fundamental meaning. Work from first principles: what must
 - **Precise over complete.** A few exact properties beat many vague ones. Name the concrete condition and the concrete outcome.
 - **Emphasis guides the skim.** Bold the one phrase per item that carries its point, so reading only the bold gives the gist. Italicize contrasts and caveats (*without fixing it*, *assumed*). ALL CAPS only for structural keywords: WHEN / IF / WHILE / SHALL in requirements, GIVEN / WHEN / THEN in acceptance criteria. Never emphasize a whole sentence, and leave an item plain when nothing in it stands out.
 
+## Diagrams
+
+Add a diagram when the feature has a shape that prose describes badly: a flow between actors, a loop or cycle, a lifecycle with states, a structure like a tree. Skip it when the spec is a list of independent properties. Most specs need zero to two.
+
+- Put each diagram under the section it explains (usually Problem, User stories, or Requirements), in a plain fenced block drawn with box characters (`┌─┐│└┘`, `▼ ▶ ◀ ▲`), so it reads the same raw and rendered.
+- Boxes are actors, roles, components, or states, named exactly as the spec names them. Concepts only: no code, file paths, or APIs unless they're a stated constraint.
+- **Label every arrow** with what crosses it: the artifact handed over, the trigger, or the condition. Draw cycles as real back-arrows, and lifecycles as state boxes (`[Blocked]`) with transitions labeled by their trigger.
+- Tag boxes and arrows with the IDs they illustrate (`R6`, `US1.2`). **The items stay the source of truth**: a diagram shows how they fit together and never states a rule no item states.
+- High level first. Keep each under ~25 lines and ~80 columns; if it needs more, it's two diagrams or too much detail.
+
+```text
+┌──────────────┐ plan  ┌──────────────┐ build ┌──────────────┐
+│ Planner      │──────▶│ Developer    │──────▶│ Tester       │
+└──────────────┘       └──────────────┘       └──────┬───────┘
+                              ▲  issues (R6, R7)     │
+                              └──────────────────────┘
+```
+
 ## Step 1: Orient
 
 1. `ls .claude/specs .claude/plans 2>/dev/null` to see what exists. If `$ARGUMENTS` matches an existing spec slug, **resume** it (read it fully, re-scan it for gaps and continue the interview). If a plan already exists for it, warn that spec changes may invalidate the plan.
@@ -82,7 +100,7 @@ Repeat until there are no significant open questions left **and** the user says 
 1. Scan the spec for gaps across: scope boundaries, users & flows, data/entities (conceptually), error and edge cases, non-functional needs (performance, security, privacy, accessibility), integrations, constraints, terminology, vague adjectives ("fast", "simple", "secure"), and how we'll know it's done.
 2. Ask the **highest-impact** questions first via `AskUserQuestion`, at most 4 per round. Make them multiple choice with your recommended option first (marked "(Recommended)") and a one-line reason, so the user can answer quickly. Free-text is always available to them.
 3. Be a thinking partner, not a stenographer: challenge assumptions, point out tradeoffs and simpler alternatives, suggest things they may have missed, and push back on scope creep. Propose; let the user decide.
-4. After each round, update the spec: fold answers into the right sections, replace or delete anything that no longer matches the agreed direction, and record notable choices under Key decisions. The file is the current proposal, not a history or a transcript.
+4. After each round, update the spec: fold answers into the right sections, replace or delete anything that no longer matches the agreed direction, and record notable choices under Key decisions. Add or redraw a diagram when the shape of the feature changes. The file is the current proposal, not a history or a transcript.
 5. Briefly tell the user what changed and what's still open. Ask if they want to go deeper anywhere before moving on.
 
 ## Step 4: Review
