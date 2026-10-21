@@ -1,0 +1,1 @@
+- There are often multiple instances of coding agents operating at the same time on multiple files, so if you see things changing while you are editing that is the reason.

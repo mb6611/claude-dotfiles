@@ -36,6 +36,12 @@
       "source": "./plugins/prompting",
       "description": "First-principles prompting and context engineering practices, kept as a living reference",
       "version": "1.0.0"
+    },
+    {
+      "name": "memory",
+      "source": "./plugins/memory",
+      "description": "User-level instructions loaded into every session",
+      "version": "1.0.0"
     }
   ]
 }
