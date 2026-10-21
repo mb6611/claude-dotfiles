@@ -30,6 +30,12 @@
       "source": "./plugins/plugin-dev",
       "description": "Create and modify plugins in this marketplace",
       "version": "1.0.0"
+    },
+    {
+      "name": "rpi",
+      "source": "./plugins/rpi",
+      "description": "Spec → plan → implement workflow with self-review and parallel implementation",
+      "version": "1.0.0"
     }
   ]
 }
