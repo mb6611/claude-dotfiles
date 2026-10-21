@@ -23,6 +23,7 @@ Every line must carry fundamental meaning. Work from first principles: what must
 - **Requirements are baseline properties.** Each one states an invariant or observable behavior of the system: something that is always true, or always happens under a stated condition. Together they should be self-consistent, with no two items able to conflict. Anything else should follow from them.
 - **Right granularity.** One item per independent property. Don't bundle unrelated behaviors into one item. Don't shatter one property into trivial sub-bullets either. If two items can't be true or false independently, they're one item.
 - **Precise over complete.** A few exact properties beat many vague ones. Name the concrete condition and the concrete outcome.
+- **Emphasis guides the skim.** Bold the one phrase per item that carries its point, so reading only the bold gives the gist. Italicize contrasts and caveats (*without fixing it*, *assumed*). ALL CAPS only for structural keywords: WHEN / IF / WHILE / SHALL in requirements, GIVEN / WHEN / THEN in acceptance criteria. Never emphasize a whole sentence, and leave an item plain when nothing in it stands out.
 
 ## Step 1: Orient
 
@@ -49,10 +50,10 @@ Write `.claude/specs/<slug>.spec.md` right away. Use what you know, and fill the
 ## User stories
 ### US1 (P1) <title>
 <As a … I want … so that …>. Why P1: <reason>.
-- **US1.1** Given … When … Then …
+- **US1.1** GIVEN … WHEN … THEN …
 
 ## Requirements
-- **R1** WHEN <trigger> THE SYSTEM SHALL <observable behavior>.
+- **R1** WHEN <trigger> THE SYSTEM SHALL <observable behavior, **key phrase bold**>.
 - **R2** IF <unwanted condition> THEN THE SYSTEM SHALL <response>.
 
 ## Constraints & assumptions
