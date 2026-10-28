@@ -9,14 +9,14 @@ User input: $ARGUMENTS
 
 ## Hard rules
 
-- Only create or edit files in `.claude/plans/` (and the spec, if the user agrees it needs changes). Do **not** write or modify source code.
+- Only create or edit files in `.ru/plans/` (and the spec, if the user agrees it needs changes). Do **not** write or modify source code.
 - The final plan has **no open questions**. Resolve them with the user or by reading code.
 - No noise. Every task is a concrete change that someone must make, with no restated context, generic advice, or tasks that exist only to look thorough. Size tasks so each is one meaningful change: don't bundle unrelated edits, and don't split one edit into trivial steps. Say each thing once and cite it by ID.
 - Every task cites the spec items it serves (`R2`), or is explicitly justified. Nothing the spec lists as a non-goal gets planned.
 
 ## Step 1: Load the spec
 
-1. Find the spec: `.claude/specs/<slug>.spec.md` (if `$ARGUMENTS` is empty, list specs that have no plan yet, and ask which).
+1. Find the spec: `.ru/specs/<slug>.spec.md` (if `$ARGUMENTS` is empty, list specs that have no plan yet, and ask which).
 2. Read it fully. Running `/rpi:plan` means the user considers the spec done. If you see it still has obvious holes, say so briefly and offer to go back to `/rpi:arch`.
 3. If a plan already exists, read it and resume rather than starting over.
 
@@ -43,10 +43,10 @@ Iterate until the user agrees. If research shows the spec is wrong or incomplete
 
 ### Single plan vs master + subplans
 
-Use a single `.claude/plans/<slug>.plan.md` by default. Split into a **master plan** plus **subplans** when any of these hold: 3+ independent workstreams, more than ~25 tasks, or the plan would exceed ~300 lines.
+Use a single `.ru/plans/<slug>.plan.md` by default. Split into a **master plan** plus **subplans** when any of these hold: 3+ independent workstreams, more than ~25 tasks, or the plan would exceed ~300 lines.
 
-- Master: `.claude/plans/<slug>.plan.md` — overview, decisions, waves, coverage; links to subplans instead of listing their tasks.
-- Subplans: `.claude/plans/<slug>/NN-<unit>.plan.md` — one per unit of work, self-contained enough that a subagent can execute it with only that file plus the spec items it cites.
+- Master: `.ru/plans/<slug>.plan.md` — overview, decisions, waves, coverage; links to subplans instead of listing their tasks.
+- Subplans: `.ru/plans/<slug>/NN-<unit>.plan.md` — one per unit of work, self-contained enough that a subagent can execute it with only that file plus the spec items it cites.
 
 Draw unit boundaries along **file ownership**: two units that can run in parallel must not edit the same files. Shared foundations (types, schema, config) go in an earlier unit that others depend on.
 
@@ -55,7 +55,7 @@ Draw unit boundaries along **file ownership**: two units that can run in paralle
 ```markdown
 # <Feature> — Implementation Plan
 
-**Spec:** [`.claude/specs/<slug>.spec.md`](../specs/<slug>.spec.md)
+**Spec:** [`.ru/specs/<slug>.spec.md`](../specs/<slug>.spec.md)
 
 ## Overview
 <What we're building and the approach, 3–6 sentences.>
@@ -106,12 +106,12 @@ Draw unit boundaries along **file ownership**: two units that can run in paralle
 
 ### Subplans
 
-A subplan `.claude/plans/<slug>/NN-<unit>.plan.md` holds the full content of master unit `UN` (`NN` is `N` zero-padded, so `U2` lives in `02-<unit>.plan.md`) and keeps that numbering (its tasks are `UN.1`, `UN.2`, …). It starts with:
+A subplan `.ru/plans/<slug>/NN-<unit>.plan.md` holds the full content of master unit `UN` (`NN` is `N` zero-padded, so `U2` lives in `02-<unit>.plan.md`) and keeps that numbering (its tasks are `UN.1`, `UN.2`, …). It starts with:
 
 ```markdown
 # UN <unit name>
 
-**Spec:** [`.claude/specs/<slug>.spec.md`](../../specs/<slug>.spec.md) · **Master plan:** [`<slug>.plan.md`](../<slug>.plan.md)
+**Spec:** [`.ru/specs/<slug>.spec.md`](../../specs/<slug>.spec.md) · **Master plan:** [`<slug>.plan.md`](../<slug>.plan.md)
 
 - **Depends on**: U1
 - **Owns**: `src/api/**`

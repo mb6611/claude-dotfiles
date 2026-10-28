@@ -9,7 +9,7 @@ User input: $ARGUMENTS
 
 ## Step 1: Preflight
 
-1. Read the master plan `.claude/plans/<slug>.plan.md`, every subplan in `.claude/plans/<slug>/`, and the matching `.claude/specs/<slug>.spec.md`. If `$ARGUMENTS` is empty, pick the plan that has unchecked tasks (ask if more than one).
+1. Read the master plan `.ru/plans/<slug>.plan.md`, every subplan in `.ru/plans/<slug>/`, and the matching `.ru/specs/<slug>.spec.md`. If `$ARGUMENTS` is empty, pick the plan that has unchecked tasks (ask if more than one).
 2. Running `/rpi:implement` means the user considers the plan done. If it still has open questions or TODOs, raise them before starting.
 3. **Resume**: trust existing `[x]` checkmarks and start from the first unchecked task.
 4. Check `git status`. If there are unrelated uncommitted changes, mention them before you start. Don't create branches or commits unless the user asks.

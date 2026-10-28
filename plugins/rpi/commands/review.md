@@ -11,7 +11,7 @@ Resolve the target:
 - A `.spec.md` path → **spec review**.
 - A `.plan.md` path → **plan review** of the master plan plus all its subplans, checked against its spec.
 - A slug → review the latest stage that exists for it: the plan if there is one, otherwise the spec.
-- Empty → the most recently modified file in `.claude/specs/` or `.claude/plans/`.
+- Empty → the most recently modified file in `.ru/specs/` or `.ru/plans/`.
 
 ## Step 1: Independent review (subagent)
 

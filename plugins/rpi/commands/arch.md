@@ -9,7 +9,7 @@ User input: $ARGUMENTS
 
 ## Hard rules
 
-- Only create or edit files in `.claude/specs/`. Do **not** write or modify source code, configs, tests, or plan files. Do not scaffold anything.
+- Only create or edit files in `.ru/specs/`. Do **not** write or modify source code, configs, tests, or plan files. Do not scaffold anything.
 - The spec says **what** and **why**, never **how**. Mention technology, file paths, APIs, or data schemas only when they are a hard constraint the user stated (e.g. "must use the existing Postgres", "must be a CLI flag").
 - The spec is always the current proposal of what goes to the plan stage. Every line in it is something you believe should be built (or explicitly not built). Unknowns, open questions, and tradeoffs are raised **in chat**, never written into the file. Where something is undecided, the spec holds your recommended choice, and you tell the user in chat that it's an assumption to confirm.
 - Keep it short: aim for under ~150 lines. If a section has nothing real to say, drop it.
@@ -45,13 +45,13 @@ Add a diagram when the feature has a shape that prose describes badly: a flow be
 
 ## Step 1: Orient
 
-1. `ls .claude/specs .claude/plans 2>/dev/null` to see what exists. If `$ARGUMENTS` matches an existing spec slug, **resume** it (read it fully, re-scan it for gaps and continue the interview). If a plan already exists for it, warn that spec changes may invalidate the plan.
+1. `ls .ru/specs .ru/plans 2>/dev/null` to see what exists. If `$ARGUMENTS` matches an existing spec slug, **resume** it (read it fully, re-scan it for gaps and continue the interview). If a plan already exists for it, warn that spec changes may invalidate the plan.
 2. Pick a short kebab-case slug for a new feature (confirm it with the user in your first question round).
 3. If this is an existing codebase, spawn 2–4 `Explore` subagents **in one message** so they run in parallel (thoroughness: medium), sized to how much of the codebase the idea touches. Give each a distinct focus so they don't overlap, for example: related existing features and how they behave; architecture boundaries and the areas the idea would touch; conventions and constraints (data model, auth, external integrations); prior art or half-built versions of the idea. Ask each for ≤300 words with file:line references. This informs your questions only; none of it goes in the spec unless it is a constraint. Skip for greenfield or trivial ideas.
 
 ## Step 2: Draft the skeleton early
 
-Write `.claude/specs/<slug>.spec.md` right away. Use what you know, and fill the gaps with your best recommendation so the user can watch it take shape. In chat, list which parts are your assumptions. Template:
+Write `.ru/specs/<slug>.spec.md` right away. Use what you know, and fill the gaps with your best recommendation so the user can watch it take shape. In chat, list which parts are your assumptions. Template:
 
 ```markdown
 # <Feature title>
@@ -91,7 +91,7 @@ Write `.claude/specs/<slug>.spec.md` right away. Use what you know, and fill the
 
 Every item outside Problem starts with its ID in a code span (`` `R1` ``, never bold, so it stays a separate label from any bold phrase after it). The prefix names the type: `G` goal, `NG` non-goal, `US` user story (its acceptance criteria are `US1.1`, `US1.2`, …), `R` requirement, `C` constraint, `D` decision, `E` edge case, `SC` success criterion. The plan and reviews cite these IDs, so each item must make sense on its own when cited. Cite with the bare ID (`R4`, `R4–R7`, `US3`), never a section number.
 - Add new items with the next free number for their prefix.
-- Before a plan exists, you may renumber freely to keep things tidy. Once `.claude/plans/<slug>.plan.md` exists, **never renumber**. Delete an item by replacing its text with `*(removed)*` (keep the ID), and tell the user which plan references now need updating.
+- Before a plan exists, you may renumber freely to keep things tidy. Once `.ru/plans/<slug>.plan.md` exists, **never renumber**. Delete an item by replacing its text with `*(removed)*` (keep the ID), and tell the user which plan references now need updating.
 
 ## Step 3: Interview loop (the main event)
 
