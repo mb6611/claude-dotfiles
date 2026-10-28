@@ -40,7 +40,13 @@
     {
       "name": "memory",
       "source": "./plugins/memory",
-      "description": "User-level instructions loaded into every session",
+      "description": "User-level instructions loaded into every session, plus a skill that decides what to save and where",
+      "version": "1.0.0"
+    },
+    {
+      "name": "textbook",
+      "source": "./plugins/textbook",
+      "description": "Study PDF textbooks conversationally, with a personal library and per-book learning notes in ~/.ru/books",
       "version": "1.0.0"
     }
   ]

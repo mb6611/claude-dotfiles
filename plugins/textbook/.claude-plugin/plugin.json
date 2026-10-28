@@ -1,0 +1,5 @@
+{
+  "name": "textbook",
+  "version": "1.0.0",
+  "description": "Study PDF textbooks conversationally, with a personal library and per-book learning notes in ~/.ru/books"
+}
