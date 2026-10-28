@@ -1,5 +1,5 @@
 {
   "name": "rpi",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Spec → plan → implement workflow with self-review and parallel implementation"
 }
