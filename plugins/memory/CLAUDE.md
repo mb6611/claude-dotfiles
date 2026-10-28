@@ -1,1 +1,2 @@
 - There are often multiple instances of coding agents operating at the same time on multiple files, so if you see things changing while you are editing that is the reason.
+- When the user corrects you, states a preference, or repeats a request they've made before, use the `memory:curate` skill to decide whether it should be saved and where. Most things shouldn't be.
